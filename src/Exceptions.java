@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Exceptions
@@ -5,9 +6,9 @@ public class Exceptions
 
     public static void main(String[] args)
     {
-        arrayIndexOutOfBounds();
-        //divideByZeroCheck();
-        //productValueTooLarge((byte)-128, (byte)2);
+        //arrayIndexOutOfBounds();
+        divideByZeroCheck();
+        //productValueTooLarge((byte)-127, (byte)1);
 
     }
 
@@ -21,17 +22,21 @@ public class Exceptions
     public static void arrayIndexOutOfBounds() {
         Scanner scnr = new Scanner(System.in);
         System.out.print("Enter an index number for the name you are seeking: ");
-        int index = scnr.nextInt();
+        int index = -1;
         String[] names = { "Ryley", "Edan", "Reagan", "Henry", "Caius", "Jane", "Guto", "Sonya", "Tyrese", "Johnny" };
 
         //Compiler in run time tries this part first
+        //Wherever a process could produce an error, its coded statement must be inside of try
         try
         {
-            System.out.println(", Name: " + names[index]);
+            //Must have the user input gathering inside of try.
+            index =  scnr.nextInt();
+            System.out.println("Name: " + names[index]);
             System.out.print("Entry was valid at index: " + index);
         }
         //This code that runs if there is an error. This part runs instead of the program crashing.
         //The catch part will trigger a text message to be sent through the excptObj.getMessage() method.
+
         catch(ArrayIndexOutOfBoundsException excptObj)
         {
             System.out.println("\nException! " + excptObj.getMessage());
@@ -43,6 +48,11 @@ public class Exceptions
             else {
                 System.out.println("The closest name is: " + names[9]);
             }
+
+        }catch(InputMismatchException ex)
+        {
+            System.out.println("\nException! You must enter an integer.");
+
         }
     }
 
@@ -67,6 +77,8 @@ public class Exceptions
         {
             System.out.println("Exception! " + excptObj.getMessage());
             System.out.println("Try again.");
+
+            //Ask the user to do it again.
             divideByZeroCheck();
         }
     }
