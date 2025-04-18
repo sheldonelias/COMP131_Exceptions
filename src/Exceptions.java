@@ -5,8 +5,8 @@ public class Exceptions
 
     public static void main(String[] args)
     {
-        //arrayIndexOutOfBounds();
-        divideByZeroCheck();
+        arrayIndexOutOfBounds();
+        //divideByZeroCheck();
         //productValueTooLarge((byte)-128, (byte)2);
 
     }
